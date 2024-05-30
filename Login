@@ -1,0 +1,62 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Logins implements ActionListener {
+
+    private static JLabel userLabel;
+    private static JTextField userText;
+    private static JLabel passLabel;
+    private static JPasswordField passwordText;
+    private static JButton loginButton;
+    private static JLabel success;
+
+    public static void main(String[] args) {
+        JPanel panel = new JPanel();
+        JFrame frame = new JFrame();
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.add(panel);
+        panel.setLayout(null);
+
+        userLabel = new JLabel("Username");
+        userLabel.setBounds(10, 15, 75, 20);
+        panel.add(userLabel);
+
+        userText = new JTextField(20);
+        userText.setBounds(90, 15, 160, 20);
+        panel.add(userText);
+
+        passLabel = new JLabel("Password");
+        passLabel.setBounds(10, 50, 75, 20);
+        panel.add(passLabel);
+
+        passwordText = new JPasswordField();
+        passwordText.setBounds(90, 50, 160, 20);
+        panel.add(passwordText);
+
+        loginButton = new JButton("Login");
+        loginButton.setBounds(110, 90, 80, 25);
+        loginButton.addActionListener(new Logins());
+        panel.add(loginButton);
+
+        success = new JLabel("");
+        success.setBounds(10, 120, 300, 25);
+        panel.add(success);
+
+        frame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String user = userText.getText();
+        String password = new String(passwordText.getPassword());
+        System.out.println(user + " " + password);
+        if (user.equals("Joe") && password.equals("sammy123")) {
+            success.setText("Login successful");
+        } else {
+            success.setText("Login failed");
+        }
+    }
+}
